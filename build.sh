@@ -14,14 +14,18 @@ export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
 git clone https://github.com/unicode-org/icu.git
 export ICU_SOURCE=$PWD/icu
 
+# Prepare output folder
+mkdir build -p
+export OUTPUT=$PWD/build
+
 # Build ICU for host
-mkdir build-host
+mkdir build-host -p
 pushd build-host
-	../build-host.sh
+#	../build-host.sh
 popd
 export HOST_BUILD=$PWD/build-host
 
-targets=(armv7a-linux-androideabi aarch64-linux-android i686-linux-android x86_64-linux-android)
+targets=(aarch64-linux-android)
 for target in ${targets[*]}
 do
     # Build ICU for Android $target
